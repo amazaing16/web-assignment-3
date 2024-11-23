@@ -1,11 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('partials/header') %>
+<div class="container mt-4">
+  <h1 class="text-center">Assignment Tracker</h1>
+  <a href="/assignments/add" class="btn btn-primary my-3">Add New Assignment</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% assignments.forEach(assignment => { %>
+      <tr>
+        <td><%= assignment.title %></td>
+        <td><%= assignment.description %></td>
+        <td><%= assignment.deadline.toISOString().split('T')[0] %></td>
+        <td><%= assignment.status %></td>
+        <td>
+          <a href="/assignments/edit/<%= assignment._id %>" class="btn btn-warning btn-sm">Edit</a>
+          <a href="/assignments/delete/<%= assignment._id %>" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/footer') %>
