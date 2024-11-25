@@ -1,10 +1,17 @@
-<%- include('partials/header') %>
+<%- include('partials/header') %> <!-- Include header partial -->
+
 <div class="container mt-4 text-center">
-  <h1>Confirm Delete</h1>
+  <h1>Confirm Delete</h1> <!-- Page title -->
+  
+  <!-- Display confirmation message with the assignment title -->
   <p>Are you sure you want to delete the assignment "<%= assignment.title %>"?</p>
+  
   <form action="/assignments/delete/<%= assignment._id %>" method="POST">
+    <!-- Delete confirmation button -->
     <button class="btn btn-danger">Yes, Delete</button>
+    <!-- Cancel button redirects to the home page -->
     <a href="/" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
-<%- include('partials/footer') %>
+
+<%- include('partials/footer') %> <!-- Include footer partial -->

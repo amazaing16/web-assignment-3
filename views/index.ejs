@@ -1,7 +1,11 @@
-<%- include('partials/header') %>
+<%- include('partials/header') %> <!-- Include header partial -->
 <div class="container mt-4">
-  <h1 class="text-center">Assignment Tracker</h1>
+  <h1 class="text-center">Assignment Tracker</h1> <!-- Page title -->
+
+  <!-- Button to add a new assignment -->
   <a href="/assignments/add" class="btn btn-primary my-3">Add New Assignment</a>
+
+  <!-- Table displaying assignments -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -15,17 +19,23 @@
     <tbody>
       <% assignments.forEach(assignment => { %>
       <tr>
-        <td><%= assignment.title %></td>
-        <td><%= assignment.description %></td>
-        <td><%= assignment.deadline.toISOString().split('T')[0] %></td>
-        <td><%= assignment.status %></td>
+        <td><%= assignment.title %></td> <!-- Assignment title -->
+        <td><%= assignment.description %></td> <!-- Description -->
+        <td><%= assignment.deadline.toISOString().split('T')[0] %></td> <!-- Deadline -->
+        
+        <!-- Apply background color based on status -->
+        <td class="<%= assignment.status === 'Pending' ? 'bg-warning bg-opacity-25' : 'bg-success bg-opacity-25' %>">
+          <%= assignment.status %>
+        </td>
+
+        <!-- Edit and Delete actions -->
         <td>
           <a href="/assignments/edit/<%= assignment._id %>" class="btn btn-warning btn-sm">Edit</a>
           <a href="/assignments/delete/<%= assignment._id %>" class="btn btn-danger btn-sm">Delete</a>
         </td>
       </tr>
-      <% }) %>
+      <% }) %> <!-- End loop -->
     </tbody>
   </table>
 </div>
-<%- include('partials/footer') %>
+<%- include('partials/footer') %> <!-- Include footer partial -->
