@@ -17,5 +17,16 @@ steps:
 
 - script: |
     npm install
+  displayName: 'npm install'
+
+# Only build if you have a build script
+- script: |
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'npm build'
+  condition: succeededOrFailed()
+
+# Run tests (if you have them)
+- script: |
+    npm test
+  displayName: 'npm test'
+  condition: succeededOrFailed()
